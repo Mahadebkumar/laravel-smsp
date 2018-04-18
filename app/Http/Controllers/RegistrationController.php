@@ -119,7 +119,7 @@ class RegistrationController extends Controller
             $fileType=$file->getClientOriginalExtension();
             $fileName=rand(1,1000).date('dmyhis').".".$fileType;
             /*$fileName=$file->getClientOriginalName();*/
-            $file->move('public/files',$fileName);
+            $file->move('public/files/student',$fileName);
             $input['image']=$fileName;
         }
         $data->update($input);

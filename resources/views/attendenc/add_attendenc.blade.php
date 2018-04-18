@@ -59,7 +59,7 @@
         </tr>
         <tr class="{{ $errors->has('in_time') ? 'has-error' : '' }}">
             <td>{{ Form::label('in_time', 'In Time', array('class'=>'control-label'))}}	</td>
-            <td>{{ Form::text('in_time', '', array('class'=>'col-md-6 form-control', 'placeholder'=>'Type '))}}
+            <td>{{ Form::time('in_time', '', array('class'=>'col-md-6 form-control', 'placeholder'=>'Type '))}}
                 @if($errors->has('in_time'))
                     <span class="help-block" style="display:block">
                   <strong>{{ $errors->first('in_time') }}</strong>
@@ -70,7 +70,7 @@
         </tr>
         <tr class="{{ $errors->has('out_time') ? 'has-error' : '' }}">
             <td>{{ Form::label('out_time', 'Out Time', array('class'=>'control-label'))}}	</td>
-            <td>{{ Form::text('out_time', '', array('class'=>'col-md-6 form-control', 'placeholder'=>'Type '))}}
+            <td>{{ Form::time('out_time', '', array('class'=>'col-md-6 form-control', 'placeholder'=>'Type '))}}
                 @if($errors->has('out_time'))
                     <span class="help-block" style="display:block">
                   <strong>{{ $errors->first('out_time') }}</strong>

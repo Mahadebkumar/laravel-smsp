@@ -189,7 +189,9 @@
                 @endif
             </td>
         </tr>
-
+        <tr>
+            <td><img src="../public/files/student/{{ $info->image }}"></td>
+        </tr>
         <tr class="{{ $errors->has('image') ? 'has-error' : '' }}">
             <td>{{ Form::label('image', 'Profile Image', array('class'=>'control-label'))}}	</td>
             <td>{{ Form::file('image', array('class'=>'col-md-6 form-control'))}}

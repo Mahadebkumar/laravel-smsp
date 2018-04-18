@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\examModel;
-use Validator;
+use App\classModel;
 use Illuminate\Http\Request;
 
-class ExamController extends Controller
+class ClassController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,7 @@ class ExamController extends Controller
      */
     public function index()
     {
-        $data=examModel::paginate(5);
-        return view('exam.exam_list', compact('data'));
+        return "hello";
     }
 
     /**
@@ -26,7 +24,7 @@ class ExamController extends Controller
      */
     public function create()
     {
-        return view('exam.add_exam');
+        return view('class.add_class');
     }
 
     /**
@@ -37,19 +35,9 @@ class ExamController extends Controller
      */
     public function store(Request $request)
     {
-          $input = $request->all();
-
-        $validator=Validator::make($request->all(), [
-            'exam_id'=>'required',
-            'held_on'=>'required',
-            'year'=>'required'
-        ]);
-        if($validator->fails()){
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
-        $data = examModel::create($input);
-        return redirect('/exam')->with('success', 'Data has been Inserted');
+        $input=$request->all();
+        $data=classModel::create($input);
+        return redirect()->back()->with('success', 'Data inserted successfully');
     }
 
     /**
@@ -71,9 +59,7 @@ class ExamController extends Controller
      */
     public function edit($id)
     {
-        $info=examModel::findOrFail($id);
-        return view('exam.edit_exam', compact('info'));
-
+        //
     }
 
     /**
@@ -85,10 +71,7 @@ class ExamController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $info=examModel::findOrFail($id);
-        $input=$request->all();
-        $info->update($input);
-        return redirect('exam')->with('success', 'Data update successfully');
+        //
     }
 
     /**
@@ -99,8 +82,6 @@ class ExamController extends Controller
      */
     public function destroy($id)
     {
-        $info=examModel::findOrFail($id);
-        $info->delete($info);
-        return redirect('exam')->with('error', 'Data deleted successfully');
+        //
     }
 }

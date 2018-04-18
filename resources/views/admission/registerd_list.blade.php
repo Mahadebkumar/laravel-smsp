@@ -37,7 +37,7 @@
             <tr>
                 <td>{{$sl++}}</td>
                 <td><img width="50px" height="auto" src="public/files/admission/{{$student->image}}"></td>
-                <td><a href="{{route('info.show', $student->id)}}">{{$student->sname}}</a></td>
+                <td><a href="{{route('admission.show', $student->id)}}">{{$student->sname}}</a></td>
                 <td>{{$student->sbname}}</td>
                 <td>{{$student->class}}</td>
                 <td>{{$student->year}}</td>
@@ -63,5 +63,6 @@
                     {!! Form::close() !!}</td>
             </tr>
          @endforeach
+        </table>
     {{ $data->links() }}
 @endsection*

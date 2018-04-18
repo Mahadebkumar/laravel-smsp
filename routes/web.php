@@ -24,6 +24,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::resource('/mark', 'MarkController');
     Route::resource('/attendenc', 'AttendencController');
     Route::resource('/exam', 'ExamController');
+    Route::resource('/class', 'ClassController');
 
 });
 Route::resource('/admission', 'AdmissionController');

@@ -131,8 +131,8 @@
             </tr>
             <tr class="{{ $errors->has('gender') ? 'has-error' : '' }}">
                 <td>{{ Form::label('gender', 'Gender', array('class'=>'control-label'))}}	</td>
-                <td>{{ Form::radio('gender', 'male', false, ['id' => 'male']) }}Male
-                    {{ Form::radio('gender', 'female', false, ['id' => 'female']) }}Female
+                <td>{{ Form::radio('gender', 'Male', false, ['id' => 'Male']) }}Male
+                    {{ Form::radio('gender', 'Female', false, ['id' => 'Female']) }}Female
                     @if($errors->has('gender'))
                         <span class="help-block" style="display:block">
                   <strong>{{ $errors->first('gender') }}</strong>
@@ -196,16 +196,6 @@
                     @if($errors->has('preschool'))
                         <span class="help-block" style="display:block">
                   <strong>{{ $errors->first('preschool') }}</strong>
-                           </span>
-                    @endif
-                </td>
-            </tr>
-            <tr class="{{ $errors->has('status') ? 'has-error' : '' }}">
-                <td>{{ Form::label('status', "Status", array('class'=>'control-label'))}}	</td>
-                <td>{{ Form::text('status', '', array('class'=>'col-md-10 form-control', 'placeholder'=>'Type your status'))}}
-                    @if($errors->has('status'))
-                        <span class="help-block" style="display:block">
-                  <strong>{{ $errors->first('status') }}</strong>
                            </span>
                     @endif
                 </td>

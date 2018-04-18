@@ -57,7 +57,6 @@ class AdmissionController extends Controller
             'religion'=>'required',
             'phone'=>'required|unique:registration',
             'preschool'=>'required',
-            'status'=>'required',
             'preaddress'=>'required',
             'peraddress'=>'required',
             'image'=> 'required|mimes:jpeg,jpg,png,JPG'
@@ -88,7 +87,8 @@ class AdmissionController extends Controller
      */
     public function show($id)
     {
-        //
+        $info=admissionModel::findOrFail($id);
+        return view('admission.admission_profile', compact('info'));
     }
 
     /**
@@ -99,7 +99,9 @@ class AdmissionController extends Controller
      */
     public function edit($id)
     {
-        //
+//        $info=admissionModel::findOrFail($id);
+//        ret
+
     }
 
     /**

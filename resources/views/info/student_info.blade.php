@@ -59,23 +59,18 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label><span class="span">Shift:</span>{{$info->shift}}</label><br>
-                        </div>
-                        <div class="col-md-6">
                             <label><span class="span">Session:</span>{{$info->session}}</label><br>
                         </div>
-                    </div>
-                    <div class="row">
+
                         <div class="col-md-6">
                             <label><span class="span">Student Id:</span>{{$info->sid}}</label><br>
-                        </div>
-                        <div class="col-md-6">
-                            <label><span class="span">Shift:</span>{{$info->shift}}</label><br>
+                        </div><div class="col-md-6">
+                            <label><span class="span">Religion:</span>{{$info->religion}}</label><br>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <img class="img img-responsive" style="height:140px; width:127px;" src="../public/files/{{$info->image}}"/>
+                    <img class="img img-responsive" style="height:140px; width:127px;" src="../public/files/student/{{$info->image}}"/>
                 </div>
             </div>
             <div class="other-setion">

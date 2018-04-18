@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\markModel;
+use UxWeb\SweetAlert\SweetAlert;
 use Validator;
 use Illuminate\Http\Request;
 
@@ -45,12 +46,19 @@ class MarkController extends Controller
            'examid'=>'required',
            'year'=>'required'
         ]);
-        if($validator->fails()){
+//        if($validator->fails()){
+//            return redirect()->back()->withErrors($validator)->withInput();
+//        }
+        if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
+        } else {
+            $data = markModel::create($input);
+            SweetAlert::success('Hello World!')->autoclose(3000);
+            return redirect('mark');
         }
 
-        $data = markModel::create($input);
-        return redirect('mark')->with('success', 'Data has been Inserted');
+
+//        return redirect('mark')->with('success', 'Data has been Inserted');
     }
 
     /**
