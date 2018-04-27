@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\registrationModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Validator;
 use file;
 
@@ -16,7 +17,7 @@ class RegistrationController extends Controller
      */
     public function index()
     {
-        $data=registrationModel::paginate(5);
+        $data=registrationModel::get();
         return view('info.student_list', compact('data'));
     }
 
@@ -137,5 +138,14 @@ class RegistrationController extends Controller
         $data=registrationModel::findOrFail($id);
         $data->delete($data);
         return redirect('/info');
+    }
+
+    public function search(Request $request)
+    {
+        $class=$request['class'];
+        $section=$request['section'];
+        $roll=$request['roll'];
+        $data=DB::table('registration')->where('class','=',$class)->where('section','=',$section)->orwhere('roll', '=', $roll)->get();
+        return view('info.student_list', compact('data'));
     }
 }

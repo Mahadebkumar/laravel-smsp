@@ -15,8 +15,9 @@ class CreateMarkModelsTable extends Migration
     {
         Schema::create('mark', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('subid');
-            $table->number('mark', 3);
+            $table->integer('sub_code');
+            $table->text('sub_name');
+            $table->number('mark', max:3);
             $table->integer('sid');
             $table->integer('examid');
             $table->year('year');

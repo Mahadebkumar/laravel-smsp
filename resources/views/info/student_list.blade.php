@@ -6,15 +6,26 @@
 
    <table class="table table-bordered table-striped table-responsive">
        <u><h1 style="text-align: center; margin-bottom: 30px;">Student's Information</h1></u>
+       <div class="form-group">
+           <form action="{{ action('RegistrationController@search') }}" method="post">
+               {{ csrf_field() }}
+               <div class="row">
+                   <div class="col-md-3">Class:<input type="text" class="form-control" name="class"></div>
+                   <div class="col-md-3">Section:<input type="text" class="form-control" name="section"></div>
+                   <div class="col-md-3">Roll:<input type="text" class="form-control" name="roll"></div>
+                   <div class="col-md-2"><input type="submit" class="btn btn-primary" name="submit" value="Search" style="margin-top: 25px;"></div>
+               </div>
+           </form>
+       </div>
        <tr>
-           <th>Sl</th>
-           <th>Photo</th>
-           <th>Name</th>
-           <th>ID</th>
-           <th>Class</th>
-           <th>Section</th>
-           <th>Roll</th>
-           <th style="text-align:center;" colspan="2">Action</th>
+           <td>Sl</td>
+           <td>Photo</td>
+           <td>Name</td>
+           <td>ID</td>
+           <td>Class</td>
+           <td>Section</td>
+           <td>Roll</td>
+           <td style="text-align:center;" colspan="3">Action</td>
        </tr>
        <?php $sl=1; ?>
        @foreach($data as $student)
@@ -27,31 +38,12 @@
                <td>{{$student->section}}</td>
                <td>{{$student->roll}}</td>
                <td><a href="{{route('info.edit', $student->id)}}" style="width:70px;" class="btn btn-success"><i class="fa fa-edit"> Edit</i></a></td>
+               <td><a href="{{url('mark/new', $student->id)}}" style="width:70px;" class="btn btn-info"><i class="fa fa-edit"> Mark</i></a></td>
                <td> {!! Form::open(array('route'=>['info.destroy', $student->id], 'method'=>'DELETE', 'class'=>'form-horizontal', 'files'=>'true')) !!}
                    <button type="submit" style="width:80px;" class="btn btn-danger" onclick="return deleteconfirm()"><i class="fa fa-trash"> Delete</i></button>
                    {!! Form::close() !!}</td>
            </tr>
        @endforeach
    </table>
-   {{ $data->links() }}
-   {{--<nav aria-label="Page navigation example">--}}
-       {{--<ul class="pagination">--}}
-           {{--<li class="page-item">--}}
-               {{--<a class="page-link" href="#" aria-label="Previous">--}}
-                   {{--<span aria-hidden="true">&laquo;</span>--}}
-                   {{--<span class="sr-only">Previous</span>--}}
-               {{--</a>--}}
-           {{--</li>--}}
-           {{--<li class="page-item"><a class="page-link" href="http://localhost/smsp/public/info?page=1">1</a></li>--}}
-           {{--<li class="page-item"><a class="page-link" href="http://localhost/smsp/public/info?page=2">2</a></li>--}}
-           {{--<li class="page-item"><a class="page-link" href="http://localhost/smsp/public/info?page=3">3</a></li>--}}
-           {{--<li class="page-item">--}}
-               {{--<a class="page-link" href="#" aria-label="Next">--}}
-                   {{--<span aria-hidden="true">&raquo;</span>--}}
-                   {{--<span class="sr-only">Next</span>--}}
-               {{--</a>--}}
-           {{--</li>--}}
-       {{--</ul>--}}
-   {{--</nav>--}}
 
 @endsection

@@ -15,8 +15,8 @@ class CreateSubjectModelsTable extends Migration
     {
         Schema::create('subject', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('subid');
-            $table->text('subname');
+            $table->integer('sub_code');
+            $table->text('sub_name');
             $table->integer('fmark');
             $table->text('class');
             $table->integer('tid');

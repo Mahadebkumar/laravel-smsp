@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\admissionModel;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Validator;
 use file;
@@ -16,7 +17,7 @@ class AdmissionController extends Controller
      */
     public function index()
     {
-        $data=admissionModel::paginate(5);
+        $data=admissionModel::where('status', '=', 0)->paginate(5);
         return view('admission.registerd_list', compact('data'));
     }
 
@@ -127,5 +128,17 @@ class AdmissionController extends Controller
         $info=admissionModel::findOrFail($id);
         $info->delete($info);
         return redirect('/admission');
+    }
+
+    public function approval($id)
+    {
+        DB::table('admission')->where('id','=',$id)->update(['status'=>1]);
+        return redirect()->back()->with('success', 'Approve successfully');
+    }
+
+    public function approve()
+    {
+        $data=admissionModel::where('status', '=', 1)->paginate(5);
+        return view('admission.admission_approve', compact('data'));
     }
 }

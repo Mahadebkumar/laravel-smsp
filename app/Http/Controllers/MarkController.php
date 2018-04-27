@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\markModel;
+use Illuminate\Support\Facades\DB;
 use UxWeb\SweetAlert\SweetAlert;
 use Validator;
 use Illuminate\Http\Request;
@@ -38,27 +39,42 @@ class MarkController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        $validator=Validator::make($request->all(), [
-           'subid'=>'required',
-           'mark'=>'required',
-           'sid'=>'required',
-           'examid'=>'required',
-           'year'=>'required'
-        ]);
-//        if($validator->fails()){
+//        $input = $request->all();
+//        $validator=Validator::make($request->all(), [
+//           'subid'=>'required',
+//           'mark'=>'required',
+//           'sid'=>'required',
+//           'examid'=>'required',
+//           'year'=>'required'
+//        ]);
+//      if ($validator->fails()) {
 //            return redirect()->back()->withErrors($validator)->withInput();
+//        } else {
+//            $data = markModel::create($input);
+//            SweetAlert::success('Hello World!')->autoclose(3000);
+//            return redirect('mark');
 //        }
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        } else {
-            $data = markModel::create($input);
-            SweetAlert::success('Hello World!')->autoclose(3000);
-            return redirect('mark');
+//
+//
+//        return redirect('mark')->with('success', 'Data has been Inserted');
+
+        $marks=$request->mark;
+        $count=count($marks);
+        $sub_codes=$request->sub_code;
+         $count=count($sub_codes);
+        $sid=$request->sid;
+        $year=$request->year;
+        $examid=$request->examid;
+        for ($i=0; $i < $count; $i++) { 
+                $mark=$marks[$i];
+                $sub_code=$sub_codes[$i];
+                DB::table('mark')->insert(
+                    ['sid'=>$sid, 'mark'=>$mark, 'sub_code'=>$sub_code, 'examid'=>$examid, 'year'=>$year]
+                );
+
         }
 
-
-//        return redirect('mark')->with('success', 'Data has been Inserted');
+        return view('mark.mark_list')->with('success', 'Mark insert successfully');
     }
 
     /**
@@ -111,5 +127,20 @@ class MarkController extends Controller
         $info->delete($info);
         return redirect('mark')->with('success', 'Data has been deleted');
 
+    }
+
+    public function marks($id)
+    {
+        $info=DB::table('registration')->where('id','=',$id)->get();
+        $class=DB::table('registration')->where('id','=',$id)->pluck('class');
+        $subjects=DB::table('subject')->where('class','=',$class)->get();
+        return view('mark.mark_entry', compact('subjects', 'info'));
+    }
+
+    public function marksheet($sid,$examid,$year)
+    {
+        $info=DB::table('registration')->where('sid','=',$sid)->get();
+        $marks=DB::table('mark')->where('examid','=',$examid)->where('year','=',$year)->where('sid','=',$sid)->get();
+        return view('mark.mark_sheet', compact('info', 'marks'));
     }
 }

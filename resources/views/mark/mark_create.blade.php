@@ -4,7 +4,7 @@
 @section('content')
     {!! Form::open(array('route'=>'mark.store', 'class'=>'form-horizontal', 'files'=>'true')) !!}
         <u><h1 style="text-align: center; margin-bottom: 20px;">Add Mark</h1></u>
-        <table class="table table-stripped">
+        <table class="table table-striped">
             <tr class="{{ $errors->has('subid') ? 'has-error' : '' }}">
                 <td>{{ Form::label('subid', 'Subject ID', array('class'=>'control-label'))}}	</td>
                 <td>{{ Form::number('subid', '', array('class'=>'col-md-6 form-control', 'placeholder'=>'Type your subject id'))}}
